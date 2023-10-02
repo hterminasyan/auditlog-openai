@@ -1,0 +1,32 @@
+[
+{
+    "message": "{\"uuid\":\"bc4c744e-6959-4210-851b-0d060f829f30\",\"user\":\"sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2\",\"time\":\"2023-07-03T12:48:45.185715Z\",\"ip\":\"20.82.97.38\",\"data\":\"{\\\"level\\\":\\\"INFO\\\",\\\"origin\\\":\\\"sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2\\\",\\\"msgNo\\\":1,\\\"msgId\\\":\\\"91e69080-a143-4c96-bf26-4c0f8719d03b\\\",\\\"message\\\":\\\"TokenIssuedEvent ('[\\\\\\\"uaa.resource\\\\\\\"]'): principal=sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2, origin=[client=sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2], identityZoneId=[fbd28b54-6c68-49b7-b49f-76665135b1ec]\\\",\\\"user\\\":\\\"sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2\\\",\\\"version\\\":\\\"1.0\\\"}\",\"attributes\":[],\"id\":\"f780ab1f-2e27-4efa-8419-427c75e1de2d\",\"category\":\"audit.security-events\",\"tenant\":\"fbd28b54-6c68-49b7-b49f-76665135b1ec\",\"customDetails\":{}}",
+    "auditUser": "sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2",
+    "timestamp": "2023-07-03T12:48:45.185Z",
+    "category":"audit.security-events"
+},
+
+
+{
+    "message": "{\"uuid\":\"bc4c744e-6959-4210-851b-0d060f829f30\",\"user\":\"sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2\",\"time\":\"2023-07-03T12:48:45.185715Z\",\"ip\":\"20.82.97.38\",\"data\":\"{\\\"level\\\":\\\"INFO\\\",\\\"origin\\\":\\\"sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2\\\",\\\"msgNo\\\":1,\\\"msgId\\\":\\\"91e69080-a143-4c96-bf26-4c0f8719d03b\\\",\\\"message\\\":\\\"TokenIssuedEvent ('[\\\\\\\"uaa.resource\\\\\\\"]'): principal=sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2, origin=[client=sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2], identityZoneId=[fbd28b54-6c68-49b7-b49f-76665135b1ec]\\\",\\\"user\\\":\\\"sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2\\\",\\\"version\\\":\\\"1.0\\\"}\",\"attributes\":[],\"id\":\"f780ab1f-2e27-4efa-8419-427c75e1de2d\",\"category\":\"audit.security-events\",\"tenant\":\"fbd28b54-6c68-49b7-b49f-76665135b1ec\",\"customDetails\":{}}",
+    "auditUser": "sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2",
+    "timestamp": "2023-07-03T12:48:45.185Z",
+    "category":"audit.security-events"
+},
+
+
+{
+    "message": "{\"uuid\":\"workspaces-ws-mccgt-deployment-b974b5847-5qmzl-\",\"user\":\"\",\"time\":\"2023-07-03T09:56:17.063Z\",\"data\":\"{\\\"wsID\\\":\\\"workspaces-ws-mccgt\\\",\\\"clusterID\\\":\\\"eu20.applicationstudio.cloud.sap\\\",\\\"message\\\":\\\"The devspace is infected with malware. \\\"}\",\"attributes\":[],\"id\":\"db3770ed-4460-40f9-9df7-36adc5b25b6b\",\"category\":\"audit.security-events\",\"tenant\":\"fbd28b54-6c68-49b7-b49f-76665135b1ec\",\"customDetails\":{}}",
+    "auditUser": "annonym",
+    "timestamp": "2023-07-03T09:56:17.063Z",
+    "category":"audit.security-events"
+},
+
+
+{
+    "message": "{\"uuid\":\"5608098d-9e1d-4669-9bb4-ee56a12a3a3e\",\"user\":\"sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2\",\"time\":\"2023-07-03T15:07:41.526925Z\",\"ip\":\"20.56.169.131\",\"data\":\"{\\\"level\\\":\\\"INFO\\\",\\\"origin\\\":\\\"sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2\\\",\\\"msgNo\\\":1,\\\"msgId\\\":\\\"bd6cb375-a2b7-4a85-a29c-3762eafd136e\\\",\\\"message\\\":\\\"TokenIssuedEvent ('[\\\\\\\"uaa.resource\\\\\\\"]'): principal=sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2, origin=[client=sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2], identityZoneId=[fbd28b54-6c68-49b7-b49f-76665135b1ec]\\\",\\\"user\\\":\\\"sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2\\\",\\\"version\\\":\\\"1.0\\\"}\",\"attributes\":[],\"id\":\"379c1272-9c2a-4c2e-a1bb-b51dbdc481cc\",\"category\":\"audit.security-events\",\"tenant\":\"fbd28b54-6c68-49b7-b49f-76665135b1ec\",\"customDetails\":{}}",
+    "auditUser": "sb-clone76e5da3633c54f359538391fae573216!b5255|destination-xsappname!b2",
+    "timestamp": "2023-07-03T15:07:41.526Z",
+    "category":"audit.security-events"
+}
+]

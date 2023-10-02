@@ -1,0 +1,152 @@
+_schema-version: "3.1"
+ID: cap-pg-openai
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: cap-pg-openai-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: cap-pg-openai-database
+  - name: cap-pg-openai-privatelink
+  - name: cap-pg-openai-auth
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm-ci
+- name: cap-pg-openai-db-deployer
+  type: custom
+  path: gen/pg
+  requires:
+  - name: cap-pg-openai-database
+  parameters:
+    disk-quota: 1GB
+    memory: 512MB
+    no-route: true
+    no-start: true
+    tasks:
+    - command: npm start
+      disk-quota: 1GB
+      memory: 512MB
+      name: deploy-to-postgresql
+  build-parameters:
+    ignore:
+    - node_modules/
+- name: cap-pg-openai-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: cap-pg-openai-destination-service
+    parameters:
+      content-target: true
+  - name: cap-pg-openai_html_repo_host
+    parameters:
+      service-key:
+        name: cap-pg-openai_html_repo_host-key
+  - name: cap-pg-openai-auth
+    parameters:
+      service-key:
+        name: cap-pg-openai-auth-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: cap_pg_openai_cap_pg_openai_html_repo_host
+          ServiceInstanceName: cap-pg-openai-html5-app-host-service
+          ServiceKeyName: cap-pg-openai_html_repo_host-key
+          sap.cloud.service: cap-pg-openai
+        - Authentication: OAuth2UserTokenExchange
+          Name: cap_pg_openai_uaa_cap_pg_openai
+          ServiceInstanceName: cap-pg-openai-auth
+          ServiceKeyName: cap-pg-openai-auth-key
+          sap.cloud.service: cap-pg-openai
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: cap-pg-openai-app-content
+  type: com.sap.application.content
+  path: app
+  requires:
+  - name: cap-pg-openai_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - ui.zip
+      name: ui
+      target-path: resources/
+- name: ui
+  type: html5
+  path: app/ui
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: cap-pg-openai-database
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./pg-options.json
+    service: postgresql-db
+    service-plan: standard
+    service-tags:
+    - plain
+    skip-service-updates:
+      parameters: true
+- name: cap-pg-openai-privatelink
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: privatelink
+    service-name: openai-privatelink
+    service-plan: standard
+- name: cap-pg-openai-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: cap-pg-openai-auth
+    service-plan: application
+- name: cap-pg-openai-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            HTML5.ForwardAuthToken: true
+            Name: cap-pg-openai-srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: '~{srv-api/srv-url}'
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: cap-pg-openai-destination-service
+    service-plan: lite
+  requires:
+    - name: srv-api
+- name: cap-pg-openai_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: cap-pg-openai-html5-app-host-service
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npx cds build
+    - ./pg-build.sh

@@ -1,0 +1,52 @@
+{
+    "name": "cap-pg-openai",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@azure/openai": "^1.0.0-beta.3",
+        "@cap-js/postgres": "^1.0.1",
+        "@sap-cloud-sdk/http-client": "^3.5.0",
+        "@sap-cloud-sdk/resilience": "^3.5.0",
+        "@sap/cds": "^7",
+        "@sap/cds-dk": "^7",
+        "@sap/xssec": "^3",
+        "cds-dbm": "^0.1.4",
+        "express": "^4",
+        "fs": "^0.0.1-security",
+        "langchain": "^0.0.154",
+        "passport": "^0"
+    },
+    "devDependencies": {
+        "@sap/ux-specification": "^1.108.10",
+        "mbt": "~1.2.24",
+        "rimraf": "^3.0.2"
+    },
+    "cds": {
+        "requires": {
+            "db": {
+                "kind": "postgres",
+                "impl": "@cap-js/postgres"
+            },
+            "auth": "xsuaa"
+        }
+    },
+    "engines": {
+        "node": "^18"
+    },
+    "scripts": {
+        "start": "npx cds run",
+        "start-hybrid": "npx cds run --profile hybrid",
+        "start:docker": "docker-compose up",
+        "build:cf": "mbt build",
+        "watch-ui": "cds watch --open ui/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy cap-pg-openai --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    },
+    "sapux": [
+        "app/ui"
+    ]
+}
