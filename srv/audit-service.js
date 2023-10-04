@@ -46,44 +46,14 @@ module.exports = (async function () {
     //send summary via email using BTP Destination
     async function sendEmail(req, mail) {
 
-        /*if(runLocal) {
-            const payload = JSON.stringify(mail);
-            const options = {
-                hostname: process.env.WEBHOOK_HOST,
-                port: 443,
-                path: process.env.WEBHOOK_PATH,
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Content-Length': payload.length
-                }
-            }
-
-            var req = https.request(options)
-            .on("error", err => {
-                console.log("Error: " + err.message);
-            });
-
-            req.write(payload);
-            req.end();
-        }
-        else{*/
             try {
                 //const { tenant } = req;
                 const mailSend = await cds.connect.to("Outlook365") ;
-                
                 mailSend.tx(req).post("/", mail);
-               /* const mails = (
-                    await mailSend.send({
-                        method: "POST",
-                        data: mail,
-                    })
-                );*/
-               // console.log(mails);
             } catch (error) {
                 console.error(`Error: ${error?.message}`);
             }
-        //}
+
     }
 
     this.on('triggerMailRefine', async (data, req) => {
